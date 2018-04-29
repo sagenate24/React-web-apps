@@ -27,12 +27,16 @@ class SearchBar extends React.Component {
 
     render() {
         return (
+            <div className="backgroundImage">
+            <h1>Ja<span className="highlight">mmm</span>ing</h1>
             <div className="SearchBar">
                 <input placeholder="Enter A Song, Album, or Artist" onChange={this.handleTermChange} onKeyPress={this.keyDownSearch} />
                 <a onClick={this.search}>SEARCH</a>
             </div>
+            </div>
         );
     }
 }
+
 
 export default SearchBar;

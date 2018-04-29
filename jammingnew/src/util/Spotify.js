@@ -24,6 +24,7 @@ const Spotify = {
             window.location = `https://accounts.spotify.com/authorize?client_id=${clientID}&response_type=token&scope=playlist-modify-public&redirect_uri=${redirectURI}`;
         }
     },
+
     search(searchTerm) {
         const accessToken = this.getAccessToken();
         return fetch(`https://api.spotify.com/v1/search?type=track&q=${searchTerm}`, {
@@ -31,6 +32,7 @@ const Spotify = {
         }).then(response => {
             if (response.ok) {
                 return response.json();
+
             } else {
                 throw new Error('Request Failed!');
             }
@@ -40,14 +42,16 @@ const Spotify = {
             if (!jsonResponse.tracks) {
                 return [];
             }
+            console.log(jsonResponse);
             return jsonResponse.tracks.items.map(track => ({
                 id: track.id,
                 name: track.name,
                 artist: track.artists[0].name,
-                album: track.album.name,
+                albumImage: track.album.images[2].url,
+                albumName: track.album.name,
                 uri: track.uri
             }));
-        });
+        })
     },
 
     savePlaylist(playlistName, tracksURI) {
@@ -55,7 +59,7 @@ const Spotify = {
             return;
         }
 
-        const accessToken = this.getAccessToken();
+        let accessToken = this.getAccessToken();
         const headers = { Authorization: `Bearer ${accessToken}` };
         let userID;
 
@@ -78,6 +82,18 @@ const Spotify = {
             });
         });
     }
+    // getUserImage() {
+    //     let accessToken = this.getAccessToken();
+    //     fetch('https://api.spotify.com/v1/me', {
+    //         headers: { Authorization: `Bearer ${accessToken}`}
+    //     }).then(response => response.json()
+    //     ).then(jsonResponse => {
+    //         // console.log(jsonResponse.images[0].url);
+    //         return jsonResponse.display_name;
+            
+    //     })
+    // }
 };
+window.onload = Spotify.getAccessToken();
 
 export default Spotify;

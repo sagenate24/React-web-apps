@@ -1,7 +1,6 @@
 .App {
   height: 100%;
-  padding: 0 17% 10% 17%;
-  background-image: url('./backgroundImg.jpg');
+  background-color: #fff;
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
@@ -34,16 +33,17 @@ html {
 }
 
 h1 {
-  padding: .77rem 0;
-  background-color: #010c3f;
+  background-color: rgba(0, 0, 0, 0.712);
   text-align: center;
   font-family: 'Poppins', sans-serif;
   font-size: 1.88rem;
   color: #fff;
+  margin: 0;
+  padding: 7px;
 }
 
 h1 .highlight {
-  color: #6c41ec;
+  color: #28aefc;
 }
 
 h2 {
