@@ -7,7 +7,11 @@ const Yelp = {
                  Authorization: `Bearer ${apiKey}` 
             }
         }).then(response => {
-            return response.json();
+            if (response.ok) {
+                return response.json();
+            }
+            throw new Error('Request Failed');
+
         }).then(jsonResponse => {
             if (jsonResponse.businesses) {
                 return jsonResponse.businesses.map(business => ({
@@ -21,8 +25,7 @@ const Yelp = {
                     category: business.categories[0].title,
                     rating: business.rating,
                     reviewCount: business.review_count,
-                    phoneNumber: business.phone,
-                    photos: business.photos  
+                    price: business.price, 
                 }));
             }
         });

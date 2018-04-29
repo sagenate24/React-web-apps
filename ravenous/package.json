@@ -5,6 +5,8 @@
   "dependencies": {
     "react": "15.6.0",
     "react-dom": "15.6.0",
+    "react-google-autocomplete": "^1.0.15",
+    "react-places-autocomplete": "^7.0.1",
     "whatwg-fetch": "^2.0.4"
   },
   "devDependencies": {

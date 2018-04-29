@@ -34,11 +34,9 @@ input:focus {
   font-family: 'Work Sans', sans-serif;
 }
 
-h1 {
-  padding: .66rem 0;
+.header {
+  padding: .005rem 0;
   text-align: center;
-  background-color: #830F0F;
   font-family: Poppins, sans-serif;
   font-size: 1.8rem;
-  color: #fff;
 }

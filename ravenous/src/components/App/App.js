@@ -23,18 +23,15 @@ class App extends React.Component {
   render() {
     return (
       <div className="App">
-        <h1 style={textStyle}>devour</h1>
+        <div className="header">
+          <h1>devour</h1>
+        </div>
+        
         <SearchBar searchYelp={this.searchYelp} />
         <BusinessList businesses={this.state.businesses} />
       </div>
     );
   }
-}
-
-var textStyle = {
-  color: 'white',
-  fontFamily: 'Courier New',
-  fontWeight: 'bold'
 }
 
 export default App;

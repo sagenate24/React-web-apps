@@ -1,6 +1,7 @@
 import React from 'react';
 import './Business.css';
 import Stars from '../Star/StarRating';
+import Price from '../prices/price';
 
 class Business extends React.Component {
     render() {
@@ -20,11 +21,15 @@ class Business extends React.Component {
                         <h3>{this.props.business.category}</h3>
                         <Stars business={this.props.business}/>
                         <p>{`${this.props.business.reviewCount} reviews`}</p>
+                        <Price business={this.props.business} />
+                                                
                     </div>
                 </div>
             </div>
         );
     }
 }
+
+console.log("this.props.business.imageSrc");
 
 export default Business;

@@ -1,7 +1,6 @@
 import React from 'react';
 import './SearchBar.css';
 
-
 class SearchBar extends React.Component {
     constructor(props) {
         super(props);
@@ -37,6 +36,7 @@ class SearchBar extends React.Component {
 
   handleTermChange(event) {
       this.setState({term: event.target.value});
+      
   }
 
   handleLocationChange(event) {
@@ -50,8 +50,6 @@ class SearchBar extends React.Component {
   }
 
   renderSortByOptions() {
-    //onClick = {this.handleSortByChange.bind(this, sortByOptionValue)}
-    //Have to bind this value to the method so it will set the state correctly
       return Object.keys(this.sortByOptions).map((sortByOption) => {
           let sortByOptionValue = this.sortByOptions[sortByOption];
           return (<li className={this.getSortByClass(sortByOptionValue)}
@@ -72,7 +70,7 @@ class SearchBar extends React.Component {
               </div>
               <div className="SearchBar-fields">
                   <input placeholder="Search Businesses" onChange={this.handleTermChange} />
-                  <input placeholder="Where?" onChange={this.handleLocationChange} />
+                  <input placeholder="Where?" onChange={this.handleLocationChange} className="autocomplete"/>
               </div>
               <div className="SearchBar-submit">
                 <a onClick={this.handleSearch}>Let's Go</a>
@@ -81,5 +79,4 @@ class SearchBar extends React.Component {
     );
   }
 }
-
 export default SearchBar;
