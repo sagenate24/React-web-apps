@@ -4,7 +4,7 @@
     align-items: center;
     overflow-y: scroll;
     width: 50%;
-    max-height: 950px;
+    max-height: 400px;
     padding: 2rem 1.16rem;
 }
   
@@ -32,11 +32,6 @@
   
   .Playlist-save:hover {
     background-color: rgba(98, 235, 121, 0.7);
-  }
-  
-  ::-webkit-scrollbar {
-      width: 0px;
-      background: transparent;
   }
   
   @media only screen and (max-width: 1020px) {

@@ -34,22 +34,20 @@ const Spotify = {
                 return response.json();
 
             } else {
-                throw new Error('Request Failed!');
+                return 
             }
-        }, networkError => {
-            console.log(networkError.message);
         }).then(jsonResponse => {
             if (!jsonResponse.tracks) {
                 return [];
             }
-            console.log(jsonResponse);
             return jsonResponse.tracks.items.map(track => ({
                 id: track.id,
                 name: track.name,
                 artist: track.artists[0].name,
                 albumImage: track.album.images[2].url,
                 albumName: track.album.name,
-                uri: track.uri
+                uri: track.uri,
+                previewAudio: track.preview_url
             }));
         })
     },

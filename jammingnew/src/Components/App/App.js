@@ -50,6 +50,9 @@ class App extends React.Component {
         playlistName: 'new playlist'
       });
     });
+    setTimeout(() => {
+      alert('Congratulations! Your playlist has been saved to your Spotify account.')
+    }, 1000);
   }
 
   search(searchTerm) {
