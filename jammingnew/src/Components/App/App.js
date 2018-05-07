@@ -24,22 +24,28 @@ class App extends React.Component {
 
   addTrack(track) {
     if (this.state.playlistTracks.find(savedTrack =>
-    savedTrack.id === track.id)) {
+      savedTrack.id === track.id)) {
       return;
     }
+    //add track to new playlist
     let newPlaylistTracks = this.state.playlistTracks;
     newPlaylistTracks.push(track);
-    this.setState({playlistTracks: newPlaylistTracks})
+    this.setState({ playlistTracks: newPlaylistTracks });
+
+      //Remove track from search results after added to new playlist
+    let newSearchResults = this.state.searchResults.filter(item => 
+      item.id !== track.id);
+      this.setState({ searchResults: newSearchResults });
   }
 
   removeTrack(track) {
     let newPlaylistTracks = this.state.playlistTracks.filter(item =>
-    item.id !== track.id);
-    this.setState({playlistTracks: newPlaylistTracks});
+      item.id !== track.id);
+    this.setState({ playlistTracks: newPlaylistTracks });
   }
 
   updatePlaylistName(name) {
-    this.setState({playlistName: name});
+    this.setState({ playlistName: name });
   }
 
   savePlaylist() {
@@ -57,24 +63,20 @@ class App extends React.Component {
 
   search(searchTerm) {
     Spotify.search(searchTerm).then(results => {
-      this.setState({searchResults: results});
+      this.setState({ searchResults: results });
     });
   }
-
-  // userImage() {
-  //   return Spotify.getUserImage();
-  // }
 
   render() {
     return (
       <div>
         <div className="App">
-          <SearchBar onSearch={this.search}/>
+          <SearchBar onSearch={this.search} />
           <div className="App-playlist">
-            <SearchResults searchResults={this.state.searchResults} onAdd={this.addTrack}/>
+            <SearchResults searchResults={this.state.searchResults} onAdd={this.addTrack} />
             <Playlist playlistTracks={this.state.playlistTracks} playlistName={this.state.playlistName}
-                      onRemove={this.removeTrack} onNameChange={this.updatePlaylistName} onSave={this.savePlaylist}/>
-                      
+              onRemove={this.removeTrack} onNameChange={this.updatePlaylistName} onSave={this.savePlaylist} />
+
           </div>
         </div>
       </div>

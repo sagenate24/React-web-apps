@@ -62,7 +62,6 @@ class Track extends React.Component {
     }
 
     render() {
-        console.log(this.props.track.name.length);
         return (
             <div className="Track">
                 <img src={this.state.albumImg} alt={"Album"} onClick={this.playTrialAudio} onMouseEnter={this.mouseEnter} onMouseLeave={this.mouseLeave}/>

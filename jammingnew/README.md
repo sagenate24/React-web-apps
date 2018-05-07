@@ -10,3 +10,4 @@ Things that i have changed or added:
 6. Preview audio of each track fetched from Spotfiy.
 7. Gave the user an acknowledgement of a saved playlist to their Spotify account.
 8. Updated Search input to show an error if the input value is empty.
+9. Removed Track from searchResults if it has been added to the new playlist.
