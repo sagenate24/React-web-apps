@@ -14,10 +14,21 @@
     border-bottom: 1px solid #e08a44;
   }
   
-  .SearchBar input {
+  .inputSong {
     width: 287px;
     padding: .88rem 0;
     border: 1px solid #fff;
+    border-radius: 3px;
+    margin-bottom: 2.22rem;
+    color: #010c3f;
+    text-align: center;
+    font-size: 1rem;
+  }
+
+  .inputSongError {
+    width: 287px;
+    padding: .88rem 0;
+    border: 1px solid red;
     border-radius: 3px;
     margin-bottom: 2.22rem;
     color: #010c3f;
@@ -43,4 +54,8 @@
   
   .SearchBar a:hover {
     background-color: #68ddfa;
+  }
+
+  .SearchBar inputSong {
+    
   }
