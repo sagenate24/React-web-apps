@@ -2,6 +2,7 @@ import React from 'react';
 import './Track.css';
 import playButtonPng from './playButton.png';
 import pauseButtonPng from './pauseButton.png';
+// import LoadingIcon from '../Loading/Loading';
 
 class Track extends React.Component {
     constructor(props) {
@@ -18,9 +19,15 @@ class Track extends React.Component {
 
         this.state = {
             albumImg: `${this.props.track.albumImage}`,
-            play: false
+            play: false,
+            // loading: true
         }
     }
+
+
+    // componentWillMount() {
+    //     setTimeout(() => this.setState({ loading: false }), 1500);
+    // }
 
     renderAction() {
         if (this.props.isRemoval) {

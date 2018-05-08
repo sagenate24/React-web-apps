@@ -76,19 +76,71 @@ const Spotify = {
                 });
             });
         });
-    }
-    // getUserImage() {
-    //     let accessToken = this.getAccessToken();
-    //     fetch('https://api.spotify.com/v1/me', {
-    //         headers: { Authorization: `Bearer ${accessToken}`}
-    //     }).then(response => response.json()
-    //     ).then(jsonResponse => {
-    //         // console.log(jsonResponse.images[0].url);
-    //         return jsonResponse.display_name;
+    },
+
+    getUserProfile() {
+        let accessToken = this.getAccessToken();
+        const headers = { Authorization: `Bearer ${accessToken}` };
+        let userID;
+
+        return fetch('https://api.spotify.com/v1/me', { headers: headers }
+        ).then(response => response.json()
+        ).then(jsonResponse => {
+            userID = jsonResponse.id;
+            return fetch(`https://api.spotify.com/v1/users/${userID}`, {
+                headers: headers
+            }).then(response => {
+                if (response.ok) {
+                    return response.json();
+                }
+            }).then(jsonResponse => {
+                // console.log(jsonResponse);
+                return jsonResponse.display_name
+                })
+            })
+        },
+
+    getUserPlaylist() {
+        let accessToken = this.getAccessToken();
+        const headers = { Authorization: `Bearer ${accessToken}` };
+        // let userID;
+
+        return fetch('https://api.spotify.com/v1/me/playlists', { headers: headers }
+        ).then(response => response.json()
+        ).then(jsonResponse => {
+            // console.log(jsonResponse);
+            // console.log(jsonResponse.items.map(item => ({
+            //     id: item.id
+            // })));
+            return jsonResponse.items.map(item => ({
+                id: item.id,
+                image: item.images[0].url,
+                name: item.name,
+                tracks: item.tracks
+            }));
             
-    //     })
-    // }
+            // return jsonResponse.items.map(playlist => ({
+            //     image: playlist.images[0].url,
+            //     name: playlist.name
+            // }));
+
+
+            // userID = jsonResponse.id;
+            // return fetch(`https://api.spotify.com/v1/users/${userID}`, {
+            //     headers: headers
+            // }).then(response => {
+            //     if (response.ok) {
+            //         return response.json();
+            //     }
+            // }).then(jsonResponse => {
+            //     console.log(jsonResponse);
+            //     return jsonResponse.images[0].url
+            //     })
+            })
+    }
 };
+// window.onload = Spotify.getUserPlaylist();
+
 window.onload = Spotify.getAccessToken();
 
 export default Spotify;

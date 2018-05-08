@@ -1,5 +1,5 @@
 import React from 'react';
-import { PacmanLoader } from 'react-spinners';
+import { BarLoader } from 'react-spinners';
 
 class LoadingIcon extends React.Component {
     constructor(props) {
@@ -11,7 +11,7 @@ class LoadingIcon extends React.Component {
     render() {
         return (
             <div className='sweet-loading'>
-                <PacmanLoader
+                <BarLoader
                     color={'#36D7B7'}
                     loading={this.state.loading}
                 />
