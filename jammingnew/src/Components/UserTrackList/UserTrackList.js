@@ -7,7 +7,7 @@ class UserTrackList extends React.Component {
             <div>
                 { 
                     this.props.userPlaylist.map(item => {
-                        return <UserTrack item={item} key={item.id} />
+                        return <UserTrack item={item} key={item.id} tracks={item.tracks.href}/>
                     })
                 }
             </div>

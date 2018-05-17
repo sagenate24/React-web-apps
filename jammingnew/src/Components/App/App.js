@@ -15,7 +15,8 @@ class App extends React.Component {
       playlistTracks: [],
       playlistName: 'new playlist',
       userProfileName: '',
-      userPlaylists: []
+      userPlaylists: [],
+      userTracksInPlaylists: []
     };
 
     this.addTrack = this.addTrack.bind(this);
@@ -40,10 +41,10 @@ class App extends React.Component {
     newPlaylistTracks.push(track);
     this.setState({ playlistTracks: newPlaylistTracks });
 
-      //Remove track from search results after added to new playlist
-    let newSearchResults = this.state.searchResults.filter(item => 
+    //Remove track from search results after added to new playlist
+    let newSearchResults = this.state.searchResults.filter(item =>
       item.id !== track.id);
-      this.setState({ searchResults: newSearchResults });
+    this.setState({ searchResults: newSearchResults });
   }
 
   removeTrack(track) {
@@ -57,13 +58,17 @@ class App extends React.Component {
   }
 
   savePlaylist() {
-    let trackURI = this.state.playlistTracks.map(track => track.uri);
-    Spotify.savePlaylist(this.state.playlistName, trackURI).then(() => {
-      this.setState({
-        playlistTracks: [],
-        playlistName: 'new playlist'
-      });
-    });
+    if (window.confirm("Are you sure you want to save this playlist to your spotify account?")) {
+      let trackURI = this.state.playlistTracks.map(track => track.uri);
+      Spotify.savePlaylist(this.state.playlistName, trackURI).then(() => {
+        this.setState({
+          playlistTracks: [],
+          playlistName: 'new playlist'
+        });
+      })
+    } else {
+      alert('Cancled');
+    }
   }
 
   search(searchTerm) {
@@ -74,7 +79,7 @@ class App extends React.Component {
 
   showUser() {
     Spotify.getUserProfile().then(results => {
-      this.setState({ userProfileName: results});
+      this.setState({ userProfileName: results });
     });
     Spotify.getUserPlaylist().then(results => {
       this.setState({ userPlaylists: results });
@@ -82,7 +87,6 @@ class App extends React.Component {
   }
 
   render() {
-    // console.log(this.state.userPlaylists);
     return (
       <div>
         <div className="App">
@@ -93,7 +97,7 @@ class App extends React.Component {
               onRemove={this.removeTrack} onNameChange={this.updatePlaylistName} onSave={this.savePlaylist} />
           </div>
           <div className="App-user-playlist">
-            <UserPlaylists userName={this.state.userProfileName} userPlaylist={this.state.userPlaylists}/>
+            <UserPlaylists userName={this.state.userProfileName} userPlaylist={this.state.userPlaylists} />
           </div>
         </div>
       </div>

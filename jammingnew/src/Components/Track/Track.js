@@ -47,12 +47,16 @@ class Track extends React.Component {
     playTrialAudio() {
         if ( this.state.play === false ) {
             this.audio.play();
-            this.setState({ play: true });
-            this.setState({ albumImg: pauseButtonPng });
+            this.setState({ 
+                play: true,
+                albumImg: pauseButtonPng
+            });
         } else {
             this.audio.pause();
-            this.setState({ play: false });
-            this.setState({ albumImg: playButtonPng });
+            this.setState({ 
+                play: false,
+                albumImg: playButtonPng  
+            });
         }
     }
 
