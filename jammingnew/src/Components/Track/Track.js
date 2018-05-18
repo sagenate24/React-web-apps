@@ -20,14 +20,8 @@ class Track extends React.Component {
         this.state = {
             albumImg: `${this.props.track.albumImage}`,
             play: false,
-            // loading: true
         }
     }
-
-
-    // componentWillMount() {
-    //     setTimeout(() => this.setState({ loading: false }), 1500);
-    // }
 
     renderAction() {
         if (this.props.isRemoval) {
@@ -45,23 +39,23 @@ class Track extends React.Component {
     }
 
     playTrialAudio() {
-        if ( this.state.play === false ) {
+        if (this.state.play === false) {
             this.audio.play();
-            this.setState({ 
+            this.setState({
                 play: true,
                 albumImg: pauseButtonPng
             });
         } else {
             this.audio.pause();
-            this.setState({ 
+            this.setState({
                 play: false,
-                albumImg: playButtonPng  
+                albumImg: playButtonPng
             });
         }
     }
 
     mouseEnter() {
-        if ( this.state.play === true ) {
+        if (this.state.play === true) {
             this.setState({ albumImg: pauseButtonPng });
         } else {
             this.setState({ albumImg: playButtonPng });
@@ -75,7 +69,7 @@ class Track extends React.Component {
     render() {
         return (
             <div className="Track">
-                <img src={this.state.albumImg} alt={"Album"} onClick={this.playTrialAudio} onMouseEnter={this.mouseEnter} onMouseLeave={this.mouseLeave}/>
+                <img src={this.state.albumImg} alt={"Album"} onClick={this.playTrialAudio} onMouseEnter={this.mouseEnter} onMouseLeave={this.mouseLeave} />
                 <div className="Track-information">
                     <h3>{this.props.track.name}</h3>
                     <p>{this.props.track.artist} | {this.props.track.albumName}</p>

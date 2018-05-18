@@ -9,10 +9,12 @@ class UserTrack extends React.Component {
         this.state = {
             playlistSongs: [],
             buttonName: 'Display Songs',
-            dropDown: false
+            dropDown: false,
+            dropDownStyle: 'UserTrack'
         }
         this.displayTracks = this.displayTracks.bind(this);
         this.saveTracks = this.saveTracks.bind(this);
+        this.renderSongList = this.renderSongList.bind(this);
     }
 
     displayTracks() {
@@ -33,35 +35,39 @@ class UserTrack extends React.Component {
         })
     }
 
-    saveTracks() {
+    saveTracks(track) {
         if (!this.state.dropDown) {
             this.displayTracks().then(results => {
                 this.setState({
                     playlistSongs: results,
-                    buttonName: 'Minimize',
-                    dropDown: true
+                    dropDown: true,
+                    dropDownStyle: 'UserTrack2'
                 });
             });
-        } else {
+        } else if (this.state.dropDown) {
             this.setState({
-                buttonName: 'Display Songs',
-                dropDown: false
-            })
+                dropDown: false,
+                dropDownStyle: 'UserTrack'
+            });
+        }
+    }
+
+    renderSongList() {
+        if (!this.state.dropDown === false) {
+            return <SongList songs={this.state.playlistSongs} />
         }
     }
 
     render() {
-        console.log(this.state.playlistSongs);
         return (
             <div className="trackContainer">
-                <div className="UserTrack">
+                <div className={this.state.dropDownStyle} onClick={this.saveTracks} >
                     <img src={this.props.item.image} alt={"UserAlbumImg"} />
                     <div className="UserTrack-information">
                         <h3>{this.props.item.name}</h3>
                     </div>
-                    <button className={"dropDownButton"} onClick={this.saveTracks}>{this.state.buttonName}</button>
                 </div>
-                <SongList songs={this.state.playlistSongs} />
+                {this.renderSongList()}
             </div>
         );
     }

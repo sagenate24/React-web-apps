@@ -1,42 +1,27 @@
 .songTrack {
-    display: flex;
-    align-items: center;
-    border-bottom: 1px solid #6f6f6f;
-    background-color: rgba(0, 0, 0, 0.071);
-    padding-left: 10px;
-  }
+  display: flex;
+  align-items: center;
+  border-bottom: 1px solid #6f6f6f;
+  padding-left: 10px;
+  height: 50px;
+}
+
 .songTrack img:hover {
   cursor: pointer;
 }
+
+.songTrack-information {
+  padding-left: 20px;
+  margin: 0;
+  width: 80%;
+}
   
-  .songTrack-action {
-    cursor: pointer;
-    padding: .5rem;
-    font-size: 1.05rem;
-    transition: color .25s;
-    color: black;
-  }
+.songTrack-information h4 {
+  color: rgb(225, 253, 255);
+}
   
-  .songTrack-action:hover {
-    color: rgba(265, 265, 265, .5);
-  }
-  
-  .songTrack-information {
-    flex-grow: .5;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    height: 62px;
-    padding-left: 20px;
-  }
-  
-  .songTrack-information h4 {
-    margin-bottom: 1px;
-    color: #000;
-  }
-  
-  .songTrack-information p {
-    font-size: .83rem;
-    font-weight: 300;
-    color: #000;
-  }
+.songTrack-information span {
+  padding-left: 25px;
+  font-weight: 300;
+  color: #fff;
+}

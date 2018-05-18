@@ -1,3 +1,5 @@
-/* .SongList {
-    border: 2px solid greenyellow;
-} */
+.SongList {
+    border-top: 2px solid greenyellow;
+    border-bottom: 2px solid greenyellow;
+    background-color: rgba(65, 57, 57, 0.687);
+}

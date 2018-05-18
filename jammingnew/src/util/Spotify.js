@@ -33,7 +33,6 @@ const Spotify = {
                 return response.json();
             }
         }).then(jsonResponse => {
-            console.log(jsonResponse)
             if (!jsonResponse.tracks) {
                 return [];
             }
@@ -53,7 +52,7 @@ const Spotify = {
         if (!playlistName || !tracksURI.length) {
             return;
         }
-        
+
         let accessToken = this.getAccessToken();
         const headers = { Authorization: `Bearer ${accessToken}` };
         let userID;
@@ -94,7 +93,6 @@ const Spotify = {
                     return response.json();
                 }
             }).then(jsonResponse => {
-                // console.log(jsonResponse);
                 return jsonResponse.display_name
             })
         })
@@ -104,10 +102,10 @@ const Spotify = {
         let accessToken = this.getAccessToken();
         const headers = { Authorization: `Bearer ${accessToken}` };
 
-        return fetch('https://api.spotify.com/v1/me/playlists', { headers: headers }
+        return fetch('https://api.spotify.com/v1/me/playlists?offset=0&limit=35', { headers: headers }
         ).then(response => response.json()
         ).then(jsonResponse => {
-            console.log(jsonResponse.items[0].tracks);
+            console.log(jsonResponse);
             return jsonResponse.items.map(item => ({
                 id: item.id,
                 image: item.images[0].url,

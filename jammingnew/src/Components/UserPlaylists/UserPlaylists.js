@@ -5,7 +5,6 @@ import UserTrackList from '../UserTrackList/UserTrackList';
 
 class UserPlaylists extends React.Component {
     render() {
-        // console.log(this.props.userPlaylist)
         return (
             <div className="UserPlaylists">
                 <h2>{this.props.userName}'s playlists</h2>

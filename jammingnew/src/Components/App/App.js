@@ -88,17 +88,18 @@ class App extends React.Component {
 
   render() {
     return (
-      <div>
-        <div className="App">
-          <SearchBar onSearch={this.search} />
-          <div className="App-playlist">
-            <SearchResults searchResults={this.state.searchResults} onAdd={this.addTrack} />
-            <Playlist playlistTracks={this.state.playlistTracks} playlistName={this.state.playlistName}
-              onRemove={this.removeTrack} onNameChange={this.updatePlaylistName} onSave={this.savePlaylist} />
-          </div>
-          <div className="App-user-playlist">
-            <UserPlaylists userName={this.state.userProfileName} userPlaylist={this.state.userPlaylists} />
-          </div>
+      <div className="App">
+        <SearchBar onSearch={this.search} />
+        <div className="App-playlist">
+          <SearchResults searchResults={this.state.searchResults} onAdd={this.addTrack} />
+          <Playlist playlistTracks={this.state.playlistTracks} playlistName={this.state.playlistName}
+            onRemove={this.removeTrack} onNameChange={this.updatePlaylistName} onSave={this.savePlaylist} />
+        </div>
+        <div className="App-user-playlist">
+          <UserPlaylists userName={this.state.userProfileName} userPlaylist={this.state.userPlaylists} />
+        </div>
+        <div className="footer">
+          <p>Nathan Sage ☺︎</p>
         </div>
       </div>
     );
