@@ -10,13 +10,11 @@ class SongTrack extends React.Component {
         this.displaySongLength = this.displaySongLength.bind(this);
     }
 
-
-
     displaySongLength() {
         let y = this.props.track.duration / 60000;
         let factor = Math.pow(10, 2);
         let newSongLength = Math.round(y * factor) / factor;
-        let hrs = parseInt(Number(newSongLength));
+        let hrs = parseInt(Number(newSongLength), 10);
         let min = Math.round((Number(newSongLength) - hrs) * 60);
         let songLengthInMin = hrs + ':' + min;
         if (songLengthInMin.length < 4) {

@@ -1,6 +1,5 @@
 const clientID = '83879e7551a74f5baa78ae5d50f56b39';
 const redirectURI = encodeURIComponent('http://localhost:3000/callback/');
-
 let accessToken;
 
 const Spotify = {
@@ -8,14 +7,12 @@ const Spotify = {
         if (accessToken) {
             return accessToken;
         }
-
         const accessTokenInURL = window.location.href.match(/access_token=([^&]*)/);
         const expireInURL = window.location.href.match(/expires_in=([^&]*)/);
 
         if (accessTokenInURL && expireInURL) {
             accessToken = accessTokenInURL[1];
             const expiresIn = Number(expireInURL[1]);
-
             window.setTimeout(() => accessToken = '', expiresIn * 1000);
             window.history.pushState('Access Token', null, '/');
             return accessToken;
@@ -29,13 +26,9 @@ const Spotify = {
         return fetch(`https://api.spotify.com/v1/search?type=track&q=${searchTerm}`, {
             headers: { Authorization: `Bearer ${accessToken}` }
         }).then(response => {
-            if (response.ok) {
-                return response.json();
-            }
+            if (response.ok) { return response.json(); }
         }).then(jsonResponse => {
-            if (!jsonResponse.tracks) {
-                return [];
-            }
+            if (!jsonResponse.tracks.items) { return null; }
             return jsonResponse.tracks.items.map(track => ({
                 id: track.id,
                 name: track.name,
@@ -49,10 +42,7 @@ const Spotify = {
     },
 
     savePlaylist(playlistName, tracksURI) {
-        if (!playlistName || !tracksURI.length) {
-            return;
-        }
-
+        if (!playlistName || !tracksURI.length) { return; }
         let accessToken = this.getAccessToken();
         const headers = { Authorization: `Bearer ${accessToken}` };
         let userID;
@@ -105,7 +95,7 @@ const Spotify = {
         return fetch('https://api.spotify.com/v1/me/playlists?offset=0&limit=35', { headers: headers }
         ).then(response => response.json()
         ).then(jsonResponse => {
-            console.log(jsonResponse);
+            // console.log(jsonResponse);
             return jsonResponse.items.map(item => ({
                 id: item.id,
                 image: item.images[0].url,

@@ -12,7 +12,7 @@ class SearchBar extends React.Component {
         this.state = {
             searchTerm: '',
             inputClassName: 'inputSong',
-            placeHolder: 'Enter A Song, Album, or Artist'
+            placeHolder: 'Search by Song, Album, or Artist'
         }
     }
 
@@ -21,7 +21,7 @@ class SearchBar extends React.Component {
             this.props.onSearch(this.state.searchTerm);
             this.setState({
                 inputClassName: 'inputSong',
-                placeHolder: 'Enter A Song, Album, or Artist'
+                placeHolder: 'Search by Song, Album, or Artist'
             });
         }
         else if (!this.state.searchTerm) {

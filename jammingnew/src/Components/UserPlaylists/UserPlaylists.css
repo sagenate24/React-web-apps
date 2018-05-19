@@ -1,6 +1,8 @@
 .UserPlaylists {
-  width: 50%;
-  background-color: rgba(0, 0, 0, 0.831);  
+  width: 48%;
+  background-color: rgba(0, 0, 0, 0.831);
+  /* display: flex;   */
+  /* float: right; */
 }
 
 .UserPlaylists h2 {

@@ -14,3 +14,4 @@ Things that i have changed or added:
 10. Used fetch to grab the users enpoint and the users playlists endpoint from sportify.
 11. Created a new feature that shows the current users playlists on Spotify.
 12. Added a dropdown feture to show songs that are in the users current playlist.
+13. Error handling.

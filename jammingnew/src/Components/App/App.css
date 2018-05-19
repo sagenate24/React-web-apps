@@ -8,6 +8,7 @@
   font-family: 'Work Sans', sans-serif;
   font-weight: 500;
   color: #fff;
+  
 }
 
 body,
@@ -40,7 +41,6 @@ h2 {
 }
 
 .App-playlist {
-  display: flex;
   width: 100%;
 }
 
@@ -55,8 +55,36 @@ h2 {
   }
 }
 
+@media only screen and (min-width: 900px) {
+  .App-playlist, .App-user-playlist {
+    align-items: center;
+    flex-direction: row;
+    padding-left: 25%;
+    width: 100%;
+    max-width: 100%;
+  }
+  .zeroResults {
+    width: 50%;
+  }
+}
+
 .footer {
   color: #000;
   text-align: center;
   padding: 10px;
+}
+
+.zeroResults {
+  color: rgba(0, 0, 0, 0.297);
+  /* width: 50%; */
+  text-align: center;
+}
+
+.SpotifySign {
+  font-size: 13px;
+  color: rgba(0, 0, 0, 0.509);
+}
+
+.SpotifyLogo {
+  width: 14px;
 }

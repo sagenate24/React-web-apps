@@ -1,6 +1,7 @@
 import React from 'react';
 import './App.css';
 
+import SpotifyLogo from './SpotifyIcon.png';
 import SearchBar from '../SearchBar/SearchBar';
 import SearchResults from '../SearchResults/SearchResults';
 import Playlist from '../Playlist/Playlist';
@@ -16,7 +17,9 @@ class App extends React.Component {
       playlistName: 'new playlist',
       userProfileName: '',
       userPlaylists: [],
-      userTracksInPlaylists: []
+      userTracksInPlaylists: [],
+      zeroResults: false,
+      badSearchTerm: ''
     };
 
     this.addTrack = this.addTrack.bind(this);
@@ -25,6 +28,7 @@ class App extends React.Component {
     this.savePlaylist = this.savePlaylist.bind(this);
     this.search = this.search.bind(this);
     this.showUser = this.showUser.bind(this);
+    this.returnEmptySearch = this.returnEmptySearch.bind(this);
   }
 
   componentDidMount() {
@@ -65,6 +69,7 @@ class App extends React.Component {
           playlistTracks: [],
           playlistName: 'new playlist'
         });
+        this.showUser();
       })
     } else {
       alert('Cancled');
@@ -73,8 +78,27 @@ class App extends React.Component {
 
   search(searchTerm) {
     Spotify.search(searchTerm).then(results => {
-      this.setState({ searchResults: results });
+      // console.log(results);
+      if (results.length !== 0) {
+        this.setState({
+          searchResults: results,
+          zeroResults: false
+        });
+      }
+      else {
+        this.setState({
+          zeroResults: true,
+          badSearchTerm: searchTerm
+        });
+      }
     })
+  }
+
+  returnEmptySearch(searchTerm) {
+    // console.log(this.state.badSearchTerm);
+    if (this.state.zeroResults === true) {
+      return <h3 className='zeroResults'>0 results found for <span>'{this.state.badSearchTerm}'</span></h3>
+    }
   }
 
   showUser() {
@@ -90,7 +114,9 @@ class App extends React.Component {
     return (
       <div className="App">
         <SearchBar onSearch={this.search} />
+        <div className="App-container">
         <div className="App-playlist">
+          {this.returnEmptySearch()}
           <SearchResults searchResults={this.state.searchResults} onAdd={this.addTrack} />
           <Playlist playlistTracks={this.state.playlistTracks} playlistName={this.state.playlistName}
             onRemove={this.removeTrack} onNameChange={this.updatePlaylistName} onSave={this.savePlaylist} />
@@ -98,13 +124,14 @@ class App extends React.Component {
         <div className="App-user-playlist">
           <UserPlaylists userName={this.state.userProfileName} userPlaylist={this.state.userPlaylists} />
         </div>
+        </div>
         <div className="footer">
           <p>Nathan Sage ☺︎</p>
+          <p className='SpotifySign'>Created using the Spotify Api <span><img className='SpotifyLogo' src={SpotifyLogo}/></span></p>
         </div>
       </div>
     );
   }
 }
-
 
 export default App;

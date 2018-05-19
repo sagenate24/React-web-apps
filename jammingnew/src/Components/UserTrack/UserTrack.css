@@ -2,6 +2,7 @@
   display: flex;
   align-items: center;
   border-bottom: 1px solid #6f6f6f;
+  transition: background-color .25s;
 }
 
 .UserTrack:hover {
@@ -12,6 +13,7 @@
 .UserTrack img {
   cursor: pointer;
   width: 64px;
+  transition: width .25s;
 }
   
 .UserTrack-action {
@@ -59,7 +61,8 @@
 
 .UserTrack2 img {
   cursor: pointer;
-  width: 64px;
+  width: 72px;
+  transition: width .25s;
 }
 
 .UserTrack2-information {
@@ -72,7 +75,7 @@
 }
 
 .UserTrack2-information h3 {
-  font-weight: 100;
+  font-weight: 200;
   color: #fff;
 }
 

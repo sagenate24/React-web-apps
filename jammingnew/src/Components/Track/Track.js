@@ -3,6 +3,7 @@ import './Track.css';
 import playButtonPng from './playButton.png';
 import pauseButtonPng from './pauseButton.png';
 // import LoadingIcon from '../Loading/Loading';
+import songNotFound from './SongNotFound.png';
 
 class Track extends React.Component {
     constructor(props) {
@@ -39,27 +40,34 @@ class Track extends React.Component {
     }
 
     playTrialAudio() {
-        if (this.state.play === false) {
-            this.audio.play();
-            this.setState({
-                play: true,
-                albumImg: pauseButtonPng
-            });
+        if (this.props.track.previewAudio !== null) {
+            if (this.state.play === false) {
+                this.audio.play();
+                this.setState({
+                    play: true,
+                    albumImg: pauseButtonPng,
+                });
+            } else {
+                this.audio.pause();
+                this.setState({
+                    play: false,
+                    albumImg: playButtonPng
+                });
+            }
         } else {
-            this.audio.pause();
-            this.setState({
-                play: false,
-                albumImg: playButtonPng
-            });
+            this.setState({ albumImg: songNotFound });
+            window.alert('Preview not available');
         }
     }
 
     mouseEnter() {
-        if (this.state.play === true) {
-            this.setState({ albumImg: pauseButtonPng });
-        } else {
-            this.setState({ albumImg: playButtonPng });
+        if (this.props.track.previewAudio !== null) {
+            if (this.state.play === true) {
+                this.setState({ albumImg: pauseButtonPng });
+            }
+            else { this.setState({ albumImg: playButtonPng }); }
         }
+        else { this.setState({ albumImg: songNotFound }); }
     }
 
     mouseLeave() {
@@ -67,6 +75,8 @@ class Track extends React.Component {
     }
 
     render() {
+        // console.log(this.state.track.id)
+        // console.log(this.props.track.previewAudio);
         return (
             <div className="Track">
                 <img src={this.state.albumImg} alt={"Album"} onClick={this.playTrialAudio} onMouseEnter={this.mouseEnter} onMouseLeave={this.mouseLeave} />
