@@ -26,3 +26,8 @@
   font-weight: 300;
   color: #fff;
 }
+
+.songTrack-information .animation{
+  float: right;
+  margin-top: -47px;
+}

@@ -1,14 +1,16 @@
-import React from 'react';
-import './SubmitPlaylist.css'
-//Not Yet Used Component
-class SubmitPopUp extends React.Component {
-    render() {
-        return (
-            <div className="submitInformation">
-                <h4>You have successfully Submited your new playlist!</h4>
-            </div>
-        );
-    }
-}
+import React from "react";
+import Popup from "reactjs-popup";
 
-export default SubmitPopUp;
+export default () => (
+  <Popup trigger={<button>Trigger</button>} position="top center">
+    {close => (
+      <div>
+        <p style={{color: '#000'}}>Playlist Empty</p>
+        <a style={{color: '#000'}} className="close" onClick={close}>
+          {/* &times; */}
+          Hello
+        </a>
+      </div>
+    )}
+  </Popup>
+);

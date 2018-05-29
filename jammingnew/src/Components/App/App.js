@@ -8,6 +8,8 @@ import Playlist from '../Playlist/Playlist';
 import Spotify from '../../util/Spotify';
 import UserPlaylists from '../UserPlaylists/UserPlaylists';
 
+export const audio = new Audio();
+
 class App extends React.Component {
   constructor(props) {
     super(props);
@@ -62,7 +64,7 @@ class App extends React.Component {
   }
 
   savePlaylist() {
-    if (window.confirm("Are you sure you want to save this playlist to your spotify account?")) {
+    // if (window.confirm("Are you sure you want to save this playlist to your spotify account?")) {
       let trackURI = this.state.playlistTracks.map(track => track.uri);
       Spotify.savePlaylist(this.state.playlistName, trackURI).then(() => {
         this.setState({
@@ -71,9 +73,6 @@ class App extends React.Component {
         });
         this.showUser();
       })
-    } else {
-      alert('Cancled');
-    }
   }
 
   search(searchTerm) {
@@ -127,7 +126,7 @@ class App extends React.Component {
         </div>
         <div className="footer">
           <p>Nathan Sage ☺︎</p>
-          <p className='SpotifySign'>Created using the Spotify Api <span><img className='SpotifyLogo' src={SpotifyLogo}/></span></p>
+          <p className='SpotifySign'>Created using the Spotify Api <span><img className='SpotifyLogo' src={SpotifyLogo} alt='SpotifyLogo'/></span></p>
         </div>
       </div>
     );

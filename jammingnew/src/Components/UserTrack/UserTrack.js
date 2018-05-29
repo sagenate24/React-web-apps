@@ -24,13 +24,15 @@ class UserTrack extends React.Component {
         return fetch(this.props.tracks, { headers: headers }
         ).then(response => response.json()
         ).then(jsonResponse => {
+            // console.log(jsonResponse.items[0])
             return jsonResponse.items.map(smallTracks => ({
                 id: smallTracks.track.id,
                 albumImage: smallTracks.track.album.images[2].url,
                 songName: smallTracks.track.name,
                 previewAudio: smallTracks.track.preview_url,
                 artistsName: smallTracks.track.artists[0].name,
-                duration: smallTracks.track.duration_ms
+                duration: smallTracks.track.duration_ms,
+                previewUrl: smallTracks.track.preview_url
             }))
         })
     }
