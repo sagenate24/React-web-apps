@@ -1,6 +1,7 @@
 const clientID = '83879e7551a74f5baa78ae5d50f56b39';
-const redirectURI = encodeURIComponent('http://localhost:3000/callback/');
-// const clientSecret = 'd2041555e605464b9f2ace2eb1acd4f3';
+// const redirectURI = encodeURIComponent('http://localhost:3000/callback/');
+const redirectURI = encodeURIComponent('http://jammingwebapp.s3.us-east-2.amazonaws.com/index.html#/callback/');
+// const clientSecret = 'https://jammingwebapp.s3.us-east-2.amazonaws.com/index.html';
 let accessToken;
 
 const Spotify = {
@@ -9,6 +10,7 @@ const Spotify = {
             return accessToken;
         }
         const accessTokenInURL = window.location.href.match(/access_token=([^&]*)/);
+        console.log(accessToken);
         const expireInURL = window.location.href.match(/expires_in=([^&]*)/);
 
         if (accessTokenInURL && expireInURL) {

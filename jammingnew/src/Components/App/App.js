@@ -21,7 +21,8 @@ class App extends React.Component {
       userPlaylists: [],
       userTracksInPlaylists: [],
       zeroResults: false,
-      badSearchTerm: ''
+      badSearchTerm: '',
+      hompage: true
     };
 
     this.addTrack = this.addTrack.bind(this);
@@ -65,14 +66,14 @@ class App extends React.Component {
 
   savePlaylist() {
     // if (window.confirm("Are you sure you want to save this playlist to your spotify account?")) {
-      let trackURI = this.state.playlistTracks.map(track => track.uri);
-      Spotify.savePlaylist(this.state.playlistName, trackURI).then(() => {
-        this.setState({
-          playlistTracks: [],
-          playlistName: 'new playlist'
-        });
-        this.showUser();
-      })
+    let trackURI = this.state.playlistTracks.map(track => track.uri);
+    Spotify.savePlaylist(this.state.playlistName, trackURI).then(() => {
+      this.setState({
+        playlistTracks: [],
+        playlistName: 'new playlist'
+      });
+      this.showUser();
+    })
   }
 
   search(searchTerm) {
@@ -94,7 +95,6 @@ class App extends React.Component {
   }
 
   returnEmptySearch(searchTerm) {
-    // console.log(this.state.badSearchTerm);
     if (this.state.zeroResults === true) {
       return <h3 className='zeroResults'>0 results found for <span>'{this.state.badSearchTerm}'</span></h3>
     }
@@ -114,19 +114,19 @@ class App extends React.Component {
       <div className="App">
         <SearchBar onSearch={this.search} />
         <div className="App-container">
-        <div className="App-playlist">
-          {this.returnEmptySearch()}
-          <SearchResults searchResults={this.state.searchResults} onAdd={this.addTrack} />
-          <Playlist playlistTracks={this.state.playlistTracks} playlistName={this.state.playlistName}
+          <div className="App-playlist">
+            {this.returnEmptySearch()}
+            <SearchResults searchResults={this.state.searchResults} onAdd={this.addTrack} />
+            <Playlist playlistTracks={this.state.playlistTracks} playlistName={this.state.playlistName}
             onRemove={this.removeTrack} onNameChange={this.updatePlaylistName} onSave={this.savePlaylist} />
-        </div>
-        <div className="App-user-playlist">
-          <UserPlaylists userName={this.state.userProfileName} userPlaylist={this.state.userPlaylists} />
-        </div>
+          </div>
+          <div className="App-user-playlist">
+            <UserPlaylists userName={this.state.userProfileName} userPlaylist={this.state.userPlaylists} />
+          </div>
         </div>
         <div className="footer">
           <p>Nathan Sage ☺︎</p>
-          <p className='SpotifySign'>Created using the Spotify Api <span><img className='SpotifyLogo' src={SpotifyLogo} alt='SpotifyLogo'/></span></p>
+          <p className='SpotifySign'>Created using the Spotify Api <span><img className='SpotifyLogo' src={SpotifyLogo} alt='SpotifyLogo' /></span></p>
         </div>
       </div>
     );

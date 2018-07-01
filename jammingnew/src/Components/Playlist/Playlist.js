@@ -24,7 +24,7 @@ class Playlist extends React.Component {
         if (this.props.playlistTracks.length !== 0) {
             this.props.onSave();
         } else {
-            alert(`Empty Playlist.. Search and add songs first to save "${this.props.playlistName}" to your Spotify account.`);
+            alert(`Sorry, empty playlist.. Search and add songs first to save "${this.props.playlistName}" to your Spotify account.`);
         }
     }
 
