@@ -4,13 +4,13 @@ const Yelp = {
     search(term, location, sortBy) {
         return fetch(`https://cors-anywhere.herokuapp.com/https://api.yelp.com/v3/businesses/search?term=${term}&location=${location}&sort_by=${sortBy}`, {
             headers: {
-                 Authorization: `Bearer ${apiKey}` 
+                 Authorization: `Bearer ${apiKey}`
             }
         }).then(response => {
             if (response.ok) {
                 return response.json();
             }
-            throw new Error('Request Failed');
+            return alert('Sorry about that.. there was an error. Please try again!')
 
         }).then(jsonResponse => {
             if (jsonResponse.businesses) {
@@ -25,7 +25,7 @@ const Yelp = {
                     category: business.categories[0].title,
                     rating: business.rating,
                     reviewCount: business.review_count,
-                    price: business.price, 
+                    price: business.price,
                 }));
             }
         });

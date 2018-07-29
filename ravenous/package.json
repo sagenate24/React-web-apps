@@ -1,12 +1,15 @@
 {
   "name": "ravenous",
   "version": "0.1.0",
-  "private": true,
+  "private": false,
   "dependencies": {
     "react": "15.6.0",
     "react-dom": "15.6.0",
+    "react-fade-in": "^0.1.6",
     "react-google-autocomplete": "^1.0.15",
+    "react-lazy-load": "^3.0.13",
     "react-places-autocomplete": "^7.0.1",
+    "react-spinners": "^0.3.3",
     "whatwg-fetch": "^2.0.4"
   },
   "devDependencies": {

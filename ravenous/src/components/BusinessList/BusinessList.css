@@ -1,6 +1,6 @@
 .BusinessList {
-    display: flex;
-    justify-content: space-around;
-    flex-wrap: wrap;
-    padding: 2.4rem 5%;
-  }
+  display: flex;
+  justify-content: space-around;
+  flex-wrap: wrap;
+  padding-top: 50px;
+}

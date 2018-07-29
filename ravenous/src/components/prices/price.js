@@ -7,7 +7,7 @@ class Price extends React.Component {
         } if (this.props.business.price === '$$') {
             return ('💵 💵');
         } if (this.props.business.price === '$$$') {
-            return ('💵 💵 💵'); 
+            return ('💵 💵 💵');
         } else {
             return 'price unknown';
         }
@@ -21,4 +21,5 @@ class Price extends React.Component {
         )
     };
 }
+
 export default Price;
